@@ -3,8 +3,8 @@ CHIP Mux {
 	OUT out;
 
 	PARTS:
-	Nand (a=sel, b=sel, out=selNand);
-	Nand (a=a, b=selNand, out=aselNand);
-	Nand (a=sel, b=b, out=bselNand);
-	Nand (a=aselNand, b=bselNand, out=out);
+	Not (in=sel, out=notSel);
+	And (a=a, b=notSel, out=aNotSelAnd);
+	And (a=sel, b=b, out=selBAnd);
+	Or (a=aNotSelAnd, b=selBAnd, out=out);
 }
